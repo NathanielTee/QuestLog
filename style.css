@@ -1,0 +1,954 @@
+/* Light Mode (Pixelated Retro Light) Colors */
+:root {
+  --lm-primary: #f59e0b; /* Amber */
+  --lm-background: #fffaf0; /* Floral White */
+  --lm-accent1: #e0b1cb; /* Pastel Pink */
+  --lm-accent2: #9ad0ec; /* Soft Baby Blue */
+  --lm-text: #262626; /* Dark Charcoal */
+  --lm-border-shadow: #bcbcbc; /* Light Grey Retro Effect */
+  --lm-light-bg-contrast: #f5f5f0; /* Slightly darker than background for elements like bg-stone-100 */
+  --lm-completed: #065f46; /* Dark Green for completed state */
+  --lm-completed-bg: #6ee7b7; /* Light Green for completed state background */
+
+  /* Achievement Light Mode Colors */
+  --lm-achieved-bg-start: #fef3c7; /* Cream Soft */
+  --lm-achieved-bg-end: #fde68a; /* Gold Pastel */
+  --lm-achieved-border: #f59e0b; /* Amber */
+  --lm-achieved-shadow: #f59e0b; /* Amber */
+  --lm-achieved-title: #78350f; /* Amber Dark */
+  --lm-achieved-description: #92400e; /* Amber Soft */
+  --lm-achieved-icon: #f59e0b; /* Trophy Gold */
+}
+
+/* Dark Mode (Very Dark, Retro Terminal Style) Colors */
+body.dark {
+  --dm-background: #000000; /* Super Black */
+  --dm-primary-accent: #f6ad55; /* Light Amber */
+  --dm-text: #fefae0; /* Warm Cream */
+  --dm-highlight-accent: #5eead4; /* Minty Cyan */
+  --dm-secondary: #e879f9; /* Pink Neon */
+  --dm-completed: #38a169; /* Hijau emerald */
+  --dm-light-bg-contrast: #0a0a0a; /* Slightly lighter than background for cards/elements */
+  --dm-border-shadow: #333333; /* Subtle dark grey for borders */
+
+  /* Achievement Dark Mode Colors */
+  --dm-achieved-bg-start: #ecc94b; /* Golden Mustard */
+  --dm-achieved-bg-end: #f6e05e; /* Soft Yellow Gold */
+  --dm-achieved-border: #f6ad55; /* Light Amber */
+  --dm-achieved-shadow: #f59e0b; /* Amber */
+  --dm-achieved-title: #5a3e00; /* Dark Brown Gold */
+  --dm-achieved-description: #8c6b00; /* Yellow Brown */
+  --dm-achieved-icon: #f59e0b; /* Trophy Gold */
+}
+
+/* Pixelated Font Styles */
+body {
+  font-family: "VT323", monospace !important;
+  background-color: var(--lm-background);
+  color: var(--lm-text);
+}
+h1,
+h2,
+h3 {
+  font-family: "Press Start 2P", cursive !important;
+}
+
+/* General Pixelated Overrides */
+.rounded-full,
+.rounded-2xl,
+.rounded-md,
+.rounded-lg,
+.rounded-xl {
+  border-radius: 4px !important; /* Small, fixed radius for pixelated corners */
+}
+
+/* Adjust shadows for a more defined, less diffused look */
+.shadow-sm {
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+.shadow-md {
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+.shadow-lg {
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Chart Container */
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 240px;
+}
+
+/* Tab and Day Button Styles */
+.tab-active {
+  border-color: var(--lm-accent1); /* Pastel Pink */
+  color: var(--lm-text);
+  background-color: var(--lm-accent1); /* Pastel Pink */
+}
+.day-btn-active {
+  border-color: var(--lm-accent1) !important;
+  background-color: var(--lm-accent1) !important;
+  color: var(--lm-text) !important;
+}
+.day-btn-completed {
+  border-color: var(--lm-completed) !important;
+  background-color: var(--lm-completed-bg) !important;
+  color: var(--lm-completed) !important;
+}
+
+/* Smooth Transitions (kept for desired smoothness) */
+.smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Page Section Display */
+.page-section {
+  display: none;
+}
+.page-section.active {
+  display: block;
+}
+
+/* Upload Item Styles */
+.upload-item {
+  position: relative;
+}
+.upload-item:hover .delete-upload-btn {
+  opacity: 1;
+}
+.delete-upload-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Chatbot & Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background-color: var(--lm-background);
+  padding: 2.5rem;
+  border-radius: 4px !important; /* Pixelated */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2); /* Pixelated shadow */
+  max-width: 90%;
+  width: 500px;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Pop-in animation */
+  border: 2px solid var(--lm-accent1); /* Pastel Pink */
+}
+/* Chatbot position (bottom right) */
+.chatbot-message {
+  position: fixed;
+  bottom: 2%; /* Adjusted to bottom right */
+  right: 2%;
+  background-color: var(--lm-background);
+  border: 2px solid var(--lm-accent2); /* Soft Baby Blue */
+  padding: 2rem 2.5rem;
+  border-radius: 4px !important; /* Pixelated */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+  max-width: 500px; /* Increased max-width */
+  width: 90%; /* Ensure responsiveness */
+  z-index: 999;
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Pop-in animation */
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Achievement position (top center) */
+.achievement-popup {
+  position: fixed;
+  top: 5%; /* Adjusted to top center, slightly lower */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    135deg,
+    var(--lm-achieved-bg-start),
+    var(--lm-achieved-bg-end)
+  ); /* Cream Soft to Gold Pastel */
+  border: 2px solid var(--lm-achieved-border); /* Amber */
+  padding: 1.5rem 2rem;
+  border-radius: 4px !important; /* Pixelated */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  max-width: 350px; /* Wider */
+  z-index: 998;
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Pop-in animation */
+  text-align: center;
+}
+
+.celebration-modal {
+  background: linear-gradient(
+    135deg,
+    var(--lm-accent1),
+    var(--lm-accent2)
+  ); /* Pastel Pink to Soft Baby Blue */
+  border: 4px solid var(--lm-primary); /* Amber */
+  border-radius: 4px !important; /* Pixelated */
+}
+.celebration-modal h2 {
+  color: var(--lm-text);
+}
+.celebration-modal p {
+  color: var(--lm-text);
+}
+/* Ensure .hidden class explicitly hides elements */
+.hidden {
+  display: none !important;
+}
+
+/* Button specific styling for pixel look */
+button {
+  border-radius: 4px !important; /* Square buttons */
+  border-width: 2px !important; /* Defined borders */
+  border-style: solid !important;
+  border-color: currentColor; /* Use current text color for border */
+  padding: 0.75rem 1.5rem !important; /* Consistent padding */
+}
+/* Default hover for buttons to darken background and add pixel shadow */
+button:hover {
+  /* Light Mode Gradient Glow - Warm Pastel Soft */
+  background-image: linear-gradient(
+    135deg,
+    #fef3c7,
+    #fde68a
+  ); /* Cream Soft to Gold Pastel */
+  filter: brightness(1.05) contrast(1.2);
+  box-shadow: 4px 4px 0 var(--lm-text); /* Dark Charcoal pixel shadow */
+  color: #ffffff; /* Ensure text is white on hover for better contrast with gradient */
+}
+/* Override for specific buttons that should not have white text on hover in light mode */
+button.nav-btn:hover,
+button.day-btn:hover,
+button.bookmark-toggle:hover,
+.collapsible-content button:hover {
+  color: inherit; /* Keep original text color for these specific buttons */
+}
+
+/* Nav button specific styles */
+.nav-btn {
+  border-radius: 4px !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: var(--lm-accent1) !important; /* Pastel Pink for nav buttons */
+  padding: 0.6rem 1.2rem !important; /* Slightly smaller padding */
+  font-size: 0.95rem; /* Slightly smaller font size */
+}
+.tab-active {
+  border-color: var(
+    --lm-accent1
+  ) !important; /* Pastel Pink for active tab border */
+  background-color: var(
+    --lm-accent1
+  ) !important; /* Pastel Pink background for active tab */
+  color: var(--lm-text) !important; /* Dark Charcoal text for active tab */
+}
+.day-btn-active {
+  border-color: var(--lm-accent1) !important;
+  background-color: var(--lm-accent1) !important;
+  color: var(--lm-text) !important;
+}
+.day-btn-completed {
+  border-color: var(--lm-completed) !important; /* Dark Green border */
+  background-color: var(--lm-completed-bg) !important;
+  color: var(--lm-completed) !important;
+}
+
+/* Ensure images within gallery/uploads are also blocky */
+.upload-item img {
+  border-radius: 4px !important;
+  border: 2px solid var(--lm-border-shadow); /* Light gray border */
+}
+.gallery-grid a,
+.latest-gallery-preview a {
+  border-radius: 4px !important;
+  border: 2px solid var(--lm-border-shadow);
+  display: block; /* Ensure block for consistent border */
+}
+
+/* Full Image Modal specific styling */
+#full-image-modal .modal-content {
+  background-color: var(--lm-text); /* Dark background for image modal */
+  padding: 1rem;
+  border: 2px solid #fff; /* White border */
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Pop-in animation */
+}
+#full-image-modal #full-image-display {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px !important;
+  border: 2px solid var(--lm-border-shadow);
+}
+
+/* Text Size Adjustments */
+.text-sm-lg {
+  font-size: 1.125rem; /* Equivalent to Tailwind's text-lg */
+}
+.text-xs-base {
+  font-size: 1rem; /* Equivalent to Tailwind's text-base */
+}
+.text-xxs-sm {
+  font-size: 0.875rem; /* Equivalent to Tailwind's text-sm */
+}
+.text-xl-2xl {
+  font-size: 1.5rem; /* Equivalent to Tailwind's text-2xl */
+}
+.text-lg-xl {
+  font-size: 1.25rem; /* Equivalent to Tailwind's text-xl */
+}
+
+/* Responsive button sizing for smaller screens */
+@media (max-width: 768px) {
+  button {
+    padding: 0.5rem 1rem !important; /* Smaller padding */
+    font-size: 0.9rem; /* Slightly smaller font size */
+  }
+  .nav-btn {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.85rem;
+  }
+  .chatbot-message {
+    padding: 1.5rem 1.8rem;
+    font-size: 1rem;
+  }
+  .achievement-popup {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .modal-content {
+    padding: 2rem;
+  }
+}
+
+/* GitHub-like activity grid styling */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(24px, 1fr)
+  ); /* Adjusted cell size for star */
+  gap: 4px; /* Slightly larger gap */
+  padding: 10px;
+  background-color: var(
+    --lm-light-bg-contrast
+  ); /* Slightly darker background for the grid in light mode */
+  border-radius: 4px;
+  border: 2px solid var(--lm-border-shadow);
+}
+
+.activity-cell {
+  width: 24px; /* Cell width */
+  height: 24px; /* Cell height */
+  background-color: var(
+    --lm-border-shadow
+  ); /* Darker default (inactive) cell color in light mode */
+  border-radius: 2px; /* Slightly rounded corners for cells */
+  display: flex; /* For centering content */
+  justify-content: center; /* For centering content */
+  align-items: center; /* For centering content */
+  font-size: 16px; /* Size of the star/text inside */
+  color: var(--lm-text); /* Default text color for the star in light mode */
+}
+
+.activity-cell.active {
+  background-color: #ffd700; /* Pastel Pink for active (no upload) */
+}
+
+.activity-cell.uploaded {
+  background-color: #880808; /* Burgundy for uploaded */
+  color: #ffd700; /* Gold star for uploaded */
+}
+
+/* Dark Mode Styles */
+body.dark {
+  background-color: var(--dm-background); /* Even darker, almost black */
+  color: var(--dm-text); /* Warm Cream text */
+}
+
+body.dark .bg-white {
+  background-color: var(
+    --dm-light-bg-contrast
+  ); /* Darker background for cards */
+  color: var(--dm-text);
+}
+
+body.dark .text-stone-800 {
+  color: var(--dm-text);
+}
+body.dark .text-stone-700 {
+  color: var(--dm-text);
+}
+body.dark .text-stone-600 {
+  color: var(--dm-text);
+}
+body.dark .text-stone-500 {
+  color: var(--dm-text);
+}
+
+body.dark .text-amber-900 {
+  color: var(--dm-primary-accent);
+}
+body.dark .text-amber-700 {
+  color: var(--dm-primary-accent);
+}
+body.dark .text-amber-600 {
+  color: var(--dm-primary-accent);
+}
+body.dark .border-stone-300 {
+  border-color: var(--dm-border-shadow);
+}
+body.dark .focus\:border-amber-500:focus {
+  border-color: var(--dm-primary-accent);
+}
+body.dark .focus\:ring-amber-500:focus {
+  --tw-ring-color: var(--dm-primary-accent);
+}
+body.dark .bg-stone-100 {
+  background-color: var(--dm-light-bg-contrast);
+}
+body.dark .border-stone-200 {
+  border-color: var(--dm-border-shadow);
+}
+body.dark .hover\:bg-amber-100:hover {
+  background-color: var(--dm-primary-accent);
+}
+body.dark .hover\:border-amber-300:hover {
+  border-color: var(--dm-primary-accent);
+}
+
+body.dark .tab-active {
+  background-color: var(--dm-highlight-accent) !important; /* Minty Cyan */
+  border-color: var(--dm-highlight-accent) !important;
+  color: var(
+    --dm-background
+  ) !important; /* Black text for active tab in dark mode */
+}
+
+body.dark .day-btn-active {
+  background-color: var(--dm-highlight-accent) !important;
+  border-color: var(--dm-highlight-accent) !important;
+  color: var(--dm-background) !important;
+}
+
+body.dark .day-btn-completed {
+  background-color: var(
+    --dm-completed
+  ) !important; /* Darker green for completed in dark mode */
+  border-color: var(--dm-completed) !important;
+  color: var(--dm-text) !important;
+}
+
+body.dark .chatbot-message {
+  background-color: var(--dm-light-bg-contrast); /* Darker for chatbot */
+  border-color: var(--dm-highlight-accent);
+}
+
+body.dark .achievement-popup {
+  background: linear-gradient(
+    135deg,
+    var(--dm-highlight-accent),
+    var(--dm-secondary)
+  ); /* Minty Cyan to Pink Neon */
+  border-color: var(--dm-highlight-accent);
+}
+
+body.dark .celebration-modal {
+  background: linear-gradient(
+    135deg,
+    var(--dm-primary-accent),
+    var(--dm-secondary)
+  ); /* Light Amber to Pink Neon */
+  border-color: var(--dm-primary-accent);
+}
+
+body.dark .celebration-modal h2 {
+  color: var(--dm-background); /* Black for contrast */
+}
+
+body.dark .celebration-modal p {
+  color: var(--dm-text); /* Warm Cream */
+}
+
+body.dark .activity-grid {
+  background-color: var(
+    --dm-light-bg-contrast
+  ); /* Darker for activity grid in dark mode */
+  border-color: var(--dm-border-shadow);
+}
+
+body.dark .activity-cell {
+  background-color: #1a1a1a; /* Darker default (inactive) cell color in dark mode */
+  color: var(--dm-text); /* Warm Cream text color for the star in dark mode */
+}
+
+body.dark .activity-cell.active {
+  background-color: var(--dm-highlight-accent); /* Minty Cyan */
+}
+
+body.dark .activity-cell.uploaded {
+  background-color: var(--dm-secondary); /* Pink Neon for uploaded */
+  color: var(--dm-background); /* Black star for dark mode */
+}
+
+/* Dark mode specific for the cancel button in program edit */
+body.dark #cancel-edit-btn {
+  background-color: var(
+    --dm-border-shadow
+  ); /* Darker background for cancel button */
+  color: var(--dm-text); /* Warm Cream text for cancel button */
+  border-color: var(--dm-border-shadow); /* Lighter border for cancel button */
+}
+
+body.dark #cancel-edit-btn:hover {
+  background-color: #555; /* Even darker on hover */
+  color: #ffffff; /* Keep text white on hover */
+}
+
+/* Toggle switch specific styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--lm-border-shadow); /* Light grey for slider */
+  transition: 0.4s;
+  border-radius: 20px; /* Rounded slider */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%; /* Rounded handle */
+}
+
+input:checked + .slider {
+  background-color: var(--lm-primary); /* Amber when checked */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--lm-primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Styles for the bookmark toggle */
+.bookmark-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; /* Adjust size as needed */
+  height: 36px; /* Adjust size as needed */
+  background-color: var(--lm-light-bg-contrast);
+  border: 2px solid var(--lm-border-shadow);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: var(--lm-text);
+}
+
+.bookmark-toggle.active {
+  background-color: var(--lm-accent1); /* Pastel Pink when bookmarked */
+  border-color: var(--lm-accent1);
+  color: var(--lm-text);
+}
+.bookmark-toggle:hover {
+  filter: brightness(90%);
+}
+
+/* Styles for collapsible content (bookmark list) */
+.collapsible-header {
+  cursor: pointer;
+  background-color: var(--lm-light-bg-contrast);
+  border: 2px solid var(--lm-border-shadow);
+  border-radius: 4px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  color: var(--lm-text);
+}
+.collapsible-header:hover {
+  background-color: #e0e0e0; /* Slightly lighter on hover */
+}
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0 1rem;
+  background-color: var(--lm-background);
+  border-left: 2px solid var(--lm-border-shadow);
+  border-right: 2px solid var(--lm-border-shadow);
+  border-bottom: 2px solid var(--lm-border-shadow);
+  border-radius: 0 0 4px 4px;
+  color: var(--lm-text);
+}
+.collapsible-content.open {
+  max-height: 500px; /* Adjust as needed for content height */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.collapsible-arrow {
+  transition: transform 0.3s ease-out;
+}
+.collapsible-arrow.rotate {
+  transform: rotate(90deg);
+}
+
+/* Styles for editable content */
+.editable-content {
+  min-height: 1.5em; /* Ensure it's visible even when empty */
+  border: 1px dashed var(--lm-border-shadow); /* Dashed border to indicate editable */
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  cursor: text;
+  color: var(--lm-text);
+}
+
+/* Dark mode specific for the cancel button in program edit */
+body.dark #cancel-edit-btn {
+  background-color: var(
+    --dm-border-shadow
+  ); /* Darker background for cancel button */
+  color: var(--dm-text); /* Light text for cancel button */
+  border-color: var(--dm-border-shadow); /* Lighter border for cancel button */
+}
+
+body.dark #cancel-edit-btn:hover {
+  background-color: #555; /* Even darker on hover */
+  color: #ffffff; /* Keep text white on hover */
+}
+
+/* Dark mode specific styles for bookmarked programs list */
+body.dark .collapsible-header {
+  background-color: var(--dm-light-bg-contrast); /* Dark background */
+  border-color: var(--dm-border-shadow); /* Medium gray border */
+  color: var(--dm-text); /* Light text for header */
+}
+
+body.dark .collapsible-content {
+  background-color: var(
+    --dm-background
+  ); /* Even darker background for content */
+  border-color: var(--dm-border-shadow); /* Medium gray border */
+  color: var(--dm-text); /* Lighter text for content in dark mode */
+}
+
+/* Dark mode specific styles for form elements and labels */
+body.dark input[type="text"],
+body.dark input[type="email"],
+body.dark textarea,
+body.dark select {
+  background-color: var(--dm-light-bg-contrast); /* Dark background */
+  color: var(--dm-text); /* Light text */
+  border-color: var(--dm-border-shadow); /* Slightly lighter border */
+}
+
+body.dark input[type="text"]::placeholder,
+body.dark input[type="email"]::placeholder,
+body.dark textarea::placeholder {
+  color: var(--dm-text); /* Lighter placeholder text */
+}
+
+/* Ensure button text is white in dark mode for the "Lihat Semua Galeri" button */
+body.dark .nav-btn.bg-amber-500 {
+  color: #ffffff !important;
+}
+
+/* Dark mode for bookmark toggle button on program page */
+body.dark .bookmark-toggle {
+  background-color: var(--dm-light-bg-contrast); /* Dark background */
+  border-color: var(--dm-border-shadow); /* Medium gray border */
+  color: var(--dm-text); /* Light icon color */
+}
+
+body.dark .bookmark-toggle.active {
+  background-color: var(
+    --dm-highlight-accent
+  ); /* Minty Cyan when active in dark mode */
+  border-color: var(--dm-highlight-accent);
+  color: var(--dm-background); /* Dark text/icon for active state */
+}
+
+/* Dark mode for all modal content */
+body.dark .modal-content {
+  background-color: var(
+    --dm-light-bg-contrast
+  ); /* Dark background for modals */
+  border-color: var(--dm-primary-accent); /* Amber border */
+  color: var(--dm-text); /* Light text */
+}
+
+body.dark .modal-content h2 {
+  color: var(--dm-primary-accent); /* Lighter amber for modal titles */
+}
+
+body.dark .modal-content p {
+  color: var(--dm-text); /* Lighter text for modal paragraphs */
+}
+
+/* Achievement List Specific Styles */
+.achievement-item {
+  background-color: var(
+    --lm-light-bg-contrast
+  ); /* Light background for unachieved */
+  border: 1px solid var(--lm-border-shadow);
+  border-radius: 4px;
+  padding: 0.75rem; /* Smaller padding */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Smaller gap */
+  transition: all 0.2s ease-in-out;
+}
+
+.achievement-item.achieved {
+  background: linear-gradient(
+    135deg,
+    var(--lm-achieved-bg-start),
+    var(--lm-achieved-bg-end)
+  ); /* Cream Soft to Gold Pastel */
+  border-color: var(--lm-achieved-border); /* Amber */
+  box-shadow: 4px 4px 0 var(--lm-achieved-shadow); /* Amber */
+}
+
+.achievement-item.achieved h3 {
+  color: var(--lm-achieved-title); /* Amber Dark */
+}
+.achievement-item.achieved p {
+  color: var(--lm-achieved-description); /* Amber Soft */
+}
+.achievement-item.achieved .achievement-icon {
+  color: var(--lm-achieved-icon); /* Trophy Gold */
+}
+
+body.dark .achievement-item {
+  background-color: var(
+    --dm-light-bg-contrast
+  ); /* Dark background for unachieved in dark mode */
+  border: 1px solid var(--dm-border-shadow);
+}
+
+body.dark .achievement-item.achieved {
+  background: linear-gradient(
+    135deg,
+    var(--dm-achieved-bg-start),
+    var(--dm-achieved-bg-end)
+  ); /* Golden Mustard to Soft Yellow Gold */
+  border-color: var(--dm-achieved-border); /* Light Amber */
+  box-shadow: 4px 4px 0 var(--dm-achieved-shadow); /* Amber */
+}
+
+body.dark .achievement-item.achieved h3 {
+  color: var(--dm-achieved-title); /* Dark Brown Gold */
+}
+body.dark .achievement-item.achieved p {
+  color: var(--dm-achieved-description); /* Yellow Brown */
+}
+body.dark .achievement-item.achieved .achievement-icon {
+  color: var(--dm-achieved-icon); /* Trophy Gold */
+}
+
+.achievement-icon {
+  font-size: 1.8rem; /* Smaller emoji size */
+  line-height: 1;
+  /* Default color for unachieved trophy */
+  color: var(--lm-border-shadow); /* A medium grey to simulate "shadow" */
+}
+/* No specific override for achieved icon color as it's now handled by --lm-achieved-icon / --dm-achieved-icon */
+
+.achievement-text h3 {
+  font-size: 1rem; /* text-base */
+  font-weight: bold;
+  color: var(--lm-text); /* Darker text for title */
+}
+body.dark .achievement-text h3 {
+  color: var(--dm-primary-accent); /* Light Amber for title in dark mode */
+}
+
+.achievement-text p {
+  font-size: 0.75rem; /* text-sm */
+  color: var(--lm-text); /* Lighter text for description */
+}
+body.dark .achievement-text p {
+  color: var(--dm-text); /* Warm Cream for description in dark mode */
+}
+
+/* Adjust the grid for achievements list to be a single column */
+#achievements-list {
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* Force single column */
+  gap: 0.75rem; /* Smaller gap between rows */
+}
+
+/* New styles for the full achievements modal */
+#all-achievements-modal .modal-content {
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  padding: 2rem;
+  /* Hide scrollbar */
+  overflow: auto; /* Keep overflow auto for content that exceeds max-height */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  background-color: var(--lm-background);
+  border-color: var(--lm-accent1);
+}
+
+#all-achievements-modal .modal-content::-webkit-scrollbar {
+  width: 0; /* Safari and Chrome */
+  height: 0;
+}
+
+#all-achievements-modal .achievement-item {
+  padding: 1rem; /* Slightly larger padding for full view */
+  gap: 1rem;
+}
+
+#all-achievements-modal .achievement-icon {
+  font-size: 2.5rem; /* Larger icon for full view */
+}
+
+#all-achievements-modal .achievement-text h3 {
+  font-size: 1.25rem; /* Larger title for full view */
+}
+
+#all-achievements-modal .achievement-text p {
+  font-size: 0.875rem; /* Larger description for full view */
+}
+
+/* Two-column layout for achievements in the modal */
+#all-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    1,
+    minmax(0, 1fr)
+  ); /* Default to 1 column on small screens */
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  #all-achievements-grid {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /* 2 columns on medium screens and up */
+  }
+}
+
+/* Dark mode for buttons inside collapsible content */
+body.dark .collapsible-content .view-program-btn,
+body.dark .collapsible-content .view-task-bookmark-btn {
+  background-color: var(
+    --dm-highlight-accent
+  ); /* Minty Cyan for view buttons */
+  border-color: var(--dm-highlight-accent);
+  color: var(--dm-background); /* Dark text */
+}
+
+body.dark .collapsible-content .view-program-btn:hover,
+body.dark .collapsible-content .view-task-bookmark-btn:hover {
+  background-color: var(--dm-secondary); /* Pink Neon on hover */
+  border-color: var(--dm-secondary);
+  color: var(--dm-background);
+}
+
+body.dark .collapsible-content .delete-program-bookmark-btn,
+body.dark .collapsible-content .delete-task-bookmark-btn {
+  background-color: #ef4444; /* Red for delete buttons */
+  border-color: #f87171;
+  color: #ffffff; /* White text */
+}
+body.dark .collapsible-content .delete-program-bookmark-btn:hover,
+body.dark .collapsible-content .delete-task-bookmark-btn:hover {
+  background-color: #dc2626; /* Darker red on hover */
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+/* Button Gradient Glow (Pixel UI Gamefeel) */
+/* Applied to all buttons by default for consistency */
+button {
+  transition: all 0.1s ease-in-out; /* Faster transition for pixel feel */
+}
+button:hover {
+  /* Light Mode Gradient Glow - Warm Pastel Soft */
+  background-image: linear-gradient(
+    135deg,
+    var(--lm-achieved-bg-start),
+    var(--lm-achieved-bg-end)
+  ); /* Cream Soft to Gold Pastel */
+  filter: brightness(1.05) contrast(1.2);
+  box-shadow: 4px 4px 0 var(--lm-text); /* Dark Charcoal pixel shadow */
+  color: #ffffff; /* Ensure text is white on hover for better contrast with gradient */
+}
+/* Override for specific buttons that should not have white text on hover in light mode */
+button.nav-btn:hover,
+button.day-btn:hover,
+button.bookmark-toggle:hover,
+.collapsible-content button:hover {
+  color: inherit; /* Keep original text color for these specific buttons */
+}
+
+/* Dark Mode Button Hover */
+body.dark button:hover {
+  /* Dark Mode Gradient Glow */
+  background-image: linear-gradient(
+    135deg,
+    var(--dm-primary-accent),
+    var(--dm-secondary)
+  ); /* Light Amber to Pink Neon */
+  filter: brightness(1.05) contrast(1.2);
+  box-shadow: 4px 4px 0 var(--dm-text); /* Warm Cream pixel shadow */
+  color: var(
+    --dm-background
+  ); /* Ensure text is black on hover for better contrast with gradient */
+}
+/* Override for specific buttons that should not have black text on hover in dark mode */
+body.dark .nav-btn:hover,
+body.dark .day-btn:hover,
+body.dark .bookmark-toggle:hover,
+body.dark .collapsible-content button:hover {
+  color: inherit; /* Keep original text color for these specific buttons */
+}
